@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+
+<h1>Astronauts</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Superpower</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var astronaut in Model.Astronauts)
+        {
+            <tr>
+                <td>@astronaut.FirstName</td>
+                <td>@astronaut.LastName</td>
+                <td>@astronaut.DateOfBirth.ToShortDateString()</td>
+                <td>@astronaut.Superpower</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Add Astronaut</h2>
+
+<form method="post">
+    <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="NewAstronaut.FirstName" required />
+    </div>
+    <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="NewAstronaut.LastName" required />
+    </div>
+    <div>
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input type="date" id="dateOfBirth" name="NewAstronaut.DateOfBirth" required />
+    </div>
+    <div>
+        <label for="superpower">Superpower:</label>
+        <input type="text" id="superpower" name="NewAstronaut.Superpower" required />
+    </div>
+    <button type="submit">Add</button>
+</form>

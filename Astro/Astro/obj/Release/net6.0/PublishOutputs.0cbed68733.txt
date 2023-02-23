@@ -1,0 +1,7 @@
+C:\Users\smutn\Documents\Astro\Astro\Astro\obj\Release\net6.0\PubTmp\Out\Astro.exe
+C:\Users\smutn\Documents\Astro\Astro\Astro\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+C:\Users\smutn\Documents\Astro\Astro\Astro\obj\Release\net6.0\PubTmp\Out\appsettings.json
+C:\Users\smutn\Documents\Astro\Astro\Astro\obj\Release\net6.0\PubTmp\Out\Astro.dll
+C:\Users\smutn\Documents\Astro\Astro\Astro\obj\Release\net6.0\PubTmp\Out\Astro.deps.json
+C:\Users\smutn\Documents\Astro\Astro\Astro\obj\Release\net6.0\PubTmp\Out\Astro.runtimeconfig.json
+C:\Users\smutn\Documents\Astro\Astro\Astro\obj\Release\net6.0\PubTmp\Out\Astro.pdb
