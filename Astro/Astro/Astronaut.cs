@@ -8,6 +8,7 @@ namespace Astro.Models
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Superpower { get; set; }
+        public int Id { get; set; }
     }
 
 }

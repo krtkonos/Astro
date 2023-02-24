@@ -18,7 +18,9 @@ namespace Astro
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<AstronautManager>();
+            services.AddSingleton<AstronautManager>();
+
+            //services.AddScoped<AstronautManager>();
             services.AddRazorPages();
         }
 

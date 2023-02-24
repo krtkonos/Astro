@@ -3,27 +3,8 @@
 
 <h1>Astronauts</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Date of Birth</th>
-            <th>Superpower</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var astronaut in Model.Astronauts)
-        {
-            <tr>
-                <td>@astronaut.FirstName</td>
-                <td>@astronaut.LastName</td>
-                <td>@astronaut.DateOfBirth.ToShortDateString()</td>
-                <td>@astronaut.Superpower</td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+
 
 <h2>Add Astronaut</h2>
 
@@ -46,3 +27,31 @@
     </div>
     <button type="submit">Add</button>
 </form>
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Superpower</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var astronaut in Model.Astronauts)
+        {
+                <tr>
+                    <td>@astronaut.FirstName</td>
+                    <td>@astronaut.LastName</td>
+                    <td>@astronaut.DateOfBirth.ToShortDateString()</td>
+                    <td>@astronaut.Superpower</td>
+                    <td>
+                        <form method="post" asp-page-handler="delete" asp-route-id="@astronaut.Id">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>
+

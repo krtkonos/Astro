@@ -4,7 +4,7 @@ namespace Astro.Models
 {
     public class AstronautManager
     {
-        private List<Astronaut> astronauts = new List<Astronaut>();
+        public List<Astronaut> astronauts = new List<Astronaut>();
 
         public void AddAstronaut(Astronaut astronaut)
         {
@@ -20,6 +20,11 @@ namespace Astro.Models
         {
             return astronauts;
         }
+        public Astronaut GetAstronautById(int id)
+        {
+            return astronauts.FirstOrDefault(a => a.Id == id);
+        }
+
     }
 
 }
