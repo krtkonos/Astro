@@ -1,6 +1,7 @@
 ﻿using Astro.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.RegularExpressions;
 
 namespace Astro.Pages
 {
@@ -14,6 +15,9 @@ namespace Astro.Pages
         }
 
         public List<Astronaut> Astronauts { get; set; }
+        [TempData]
+        public string ErrorMessage { get; set; }
+
 
         [BindProperty]
         public Astronaut NewAstronaut { get; set; }
@@ -26,24 +30,26 @@ namespace Astro.Pages
         {
             if (ModelState.IsValid)
             {
-                astronautManager.AddAstronaut(NewAstronaut);
-                /*if (Astronauts == null || Astronauts.Count == 0)
+                InputCheck(NewAstronaut);
+                if (!ModelState.IsValid)
                 {
-                    NewAstronaut.Id = 1;
+                    // Pokud jsou nějaké chyby, vrátíme se na stránku s formulářem a zobrazíme chyby.
+                    Astronauts = astronautManager.GetAllAstronauts();
+                    ErrorMessage = "The text must not contain digits and special characters (like ?><:(){}!@#$%...)";
+                    Astronauts = astronautManager.GetAllAstronauts();
+                    return Page();
                 }
-                else
-                {
-                    for (int i = 0; i < Astronauts.Count; i++)
-                    {
-                        Astronauts[i].Id = i + 1;
-                    }
-                }*/
+                astronautManager.AddAstronaut(NewAstronaut);
                 Astronauts = astronautManager.GetAllAstronauts();
-                Console.WriteLine("New astronaut added: " + NewAstronaut.FirstName + " " + NewAstronaut.LastName + " " + NewAstronaut.Id);
-                Console.WriteLine("Count aftergetall : " + Astronauts.Count);
+                HttpContext.Response.Redirect(HttpContext.Request.Path);
                 return Page();
             }
-            return BadRequest();
+            else
+            {
+                ErrorMessage = "There were errors in the submitted form. Please fix them and try again.";
+                Astronauts = astronautManager.GetAllAstronauts();
+                return BadRequest();
+            }
         }
         public IActionResult OnPostDelete(int id)
         {
@@ -55,5 +61,19 @@ namespace Astro.Pages
             astronautManager.RemoveAstronaut(astronaut);
             return RedirectToPage();
         }
+        private void InputCheck(Astronaut astronaut)
+        {
+            string regexPattern = "^[a-zA-Z ]+$";
+            string[] propertiesToCheck = { "FirstName", "LastName", "Superpower" };
+            foreach (string propertyName in propertiesToCheck)
+            {
+                string propertyValue = (string)astronaut.GetType().GetProperty(propertyName).GetValue(astronaut);
+                if (!Regex.IsMatch(propertyValue, regexPattern))
+                {
+                    ModelState.AddModelError("NewAstronaut." + propertyName, "The " + propertyName + " field can only contain letters and spaces.");
+                }
+            }
+        }
+
     }
 }
