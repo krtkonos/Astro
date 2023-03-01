@@ -24,7 +24,6 @@ namespace Astro.Models
         {
             return astronauts.FirstOrDefault(a => a.Id == id);
         }
-
     }
 
 }

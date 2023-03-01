@@ -1,4 +1,5 @@
-﻿using Astro.Models;
+﻿using Astro.Controllers;
+using Astro.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +20,8 @@ namespace Astro
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<AstronautManager>();
+            services.AddControllers();
+
 
             //services.AddScoped<AstronautManager>();
             services.AddRazorPages();
@@ -42,6 +45,12 @@ namespace Astro
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
 
             app.UseEndpoints(endpoints =>
             {
