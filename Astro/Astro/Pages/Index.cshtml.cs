@@ -33,7 +33,6 @@ namespace Astro.Pages
                 InputCheck(NewAstronaut);
                 if (!ModelState.IsValid)
                 {
-                    // Pokud jsou nějaké chyby, vrátíme se na stránku s formulářem a zobrazíme chyby.
                     Astronauts = astronautManager.GetAllAstronauts();
                     ErrorMessage = "The text must not contain digits and special characters (like ?><:(){}!@#$%...)";
                     Astronauts = astronautManager.GetAllAstronauts();
